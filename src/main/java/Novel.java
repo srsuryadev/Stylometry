@@ -86,6 +86,7 @@ public class Novel {
     }
 
     public boolean countWords(List<String> words) {
+        hm = new HashMap<String, Integer>();
         for (int i = 0; i < words.size(); i++) {
             String word = words.get(i).toLowerCase();
             if (hm.get(word) == null) {
@@ -128,6 +129,10 @@ public class Novel {
     };
 
     public ArrayList<String> mostFrequentWords(int N) {
+        return this.mostFrequentWords(N, getWords());
+    }
+
+    public ArrayList<String> mostFrequentNonStopWords(int N){
         return this.mostFrequentWords(N, getNonStopWords());
     }
 
