@@ -22,7 +22,7 @@ public class Novel {
     private int numPara = 0;
     private int numPunct = 0;
     private int numLet = 0;
-    
+
     public Novel() {
         hm = new HashMap<String, Integer>();
         queue = new PriorityQueue<Node>(idComparator);
@@ -51,27 +51,27 @@ public class Novel {
 
     public Integer getNumSentences() {
         if(numSen == 0){
-        	for (Paragraph p : this.paragraphs) {
-        		numSen += p.getNumSentences();
-        	}
+            for (Paragraph p : this.paragraphs) {
+                numSen += p.getNumSentences();
+            }
         }
         return numSen;
     }
 
     public Integer getNumLetters() {
         if(numLet == 0){
-        	for (Paragraph p : this.paragraphs) {
-        		numLet += p.getNumLetters();
-        	}
+            for (Paragraph p : this.paragraphs) {
+                numLet += p.getNumLetters();
+            }
         }
         return numLet;
     }
 
     public Integer getNumPunctuation() {
         if( numPunct == 0)
-        	for (Paragraph p : this.paragraphs) {
-        		numPunct += p.getNumPunctuation();
-        	}
+            for (Paragraph p : this.paragraphs) {
+                numPunct += p.getNumPunctuation();
+            }
         return numPunct;
     }
 
@@ -143,21 +143,21 @@ public class Novel {
 
     public List<String> getWords() {
         if(words==null){
-        	words = new LinkedList<String>();
-        	for (Paragraph p : this.paragraphs) {
-        		words.addAll(p.getWords());
-        	}
+            words = new LinkedList<String>();
+            for (Paragraph p : this.paragraphs) {
+                words.addAll(p.getWords());
+            }
         }
         return words;
     }
 
     public List<String> getNonStopWords() {
-       if(nonStopWords==null){
-    	   nonStopWords = new LinkedList<String>();
-    	   for (Paragraph p : this.paragraphs) {
-    		   nonStopWords.addAll(p.getNonStopWords());
-    	   }
-       }
+        if(nonStopWords==null){
+            nonStopWords = new LinkedList<String>();
+            for (Paragraph p : this.paragraphs) {
+                nonStopWords.addAll(p.getNonStopWords());
+            }
+        }
         return nonStopWords;
     }
 
