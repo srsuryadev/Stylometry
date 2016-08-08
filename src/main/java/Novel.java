@@ -13,10 +13,16 @@ import java.util.Scanner;
 
 public class Novel {
 
-    public List<Paragraph> paragraphs;
-    public static PriorityQueue<Node> queue = null;
-    public static HashMap<String, Integer> hm = null;
-
+    private List<Paragraph> paragraphs;
+    private  PriorityQueue<Node> queue = null;
+    private  HashMap<String, Integer> hm = null;
+    private List<String> nonStopWords = null;
+    private List<String> words = null;
+    private int numSen = 0;
+    private int numPara = 0;
+    private int numPunct = 0;
+    private int numLet = 0;
+    
     public Novel() {
         hm = new HashMap<String, Integer>();
         queue = new PriorityQueue<Node>(idComparator);
@@ -44,27 +50,29 @@ public class Novel {
     }
 
     public Integer getNumSentences() {
-        int num = 0;
-        for (Paragraph p : this.paragraphs) {
-            num += p.getNumSentences();
+        if(numSen == 0){
+        	for (Paragraph p : this.paragraphs) {
+        		numSen += p.getNumSentences();
+        	}
         }
-        return num;
+        return numSen;
     }
 
     public Integer getNumLetters() {
-        int num = 0;
-        for (Paragraph p : this.paragraphs) {
-            num += p.getNumLetters();
+        if(numLet == 0){
+        	for (Paragraph p : this.paragraphs) {
+        		numLet += p.getNumLetters();
+        	}
         }
-        return num;
+        return numLet;
     }
 
     public Integer getNumPunctuation() {
-        int num = 0;
-        for (Paragraph p : this.paragraphs) {
-            num += p.getNumPunctuation();
-        }
-        return num;
+        if( numPunct == 0)
+        	for (Paragraph p : this.paragraphs) {
+        		numPunct += p.getNumPunctuation();
+        	}
+        return numPunct;
     }
 
     public Double getPunctuationDensityParagraph() {
@@ -120,7 +128,6 @@ public class Novel {
 
 
     public static Comparator<Node> idComparator = new Comparator<Node>() {
-        @Override
         public int compare(Node c1, Node c2) {
             return (int) (c2.count - c1.count);
         }
@@ -135,19 +142,23 @@ public class Novel {
     }
 
     public List<String> getWords() {
-        List<String> words = new LinkedList<String>();
-        for (Paragraph p : this.paragraphs) {
-            words.addAll(p.getWords());
+        if(words==null){
+        	words = new LinkedList<String>();
+        	for (Paragraph p : this.paragraphs) {
+        		words.addAll(p.getWords());
+        	}
         }
         return words;
     }
 
     public List<String> getNonStopWords() {
-        List<String> words = new LinkedList<String>();
-        for (Paragraph p : this.paragraphs) {
-            words.addAll(p.getNonStopWords());
-        }
-        return words;
+       if(nonStopWords==null){
+    	   nonStopWords = new LinkedList<String>();
+    	   for (Paragraph p : this.paragraphs) {
+    		   nonStopWords.addAll(p.getNonStopWords());
+    	   }
+       }
+        return nonStopWords;
     }
 
     public Integer getNumWords() {
