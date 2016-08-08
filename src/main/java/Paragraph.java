@@ -11,6 +11,11 @@ import edu.emory.mathcs.nlp.component.tokenizer.token.Token;
 public class Paragraph {
 
     public ArrayList<Sentence> sentences = null;
+    private ArrayList<String> words = null;
+    private ArrayList<String> nonStopWords = null;
+    private int numWords = 0;
+    private int numLetters = 0;
+    private int numPunctuations = 0;
 
     public Paragraph(String paragraph) {
         this.sentences = new ArrayList<Sentence>();
@@ -22,48 +27,55 @@ public class Paragraph {
         }
     }
 
-    public int getNumLines() {
+    public int getNumSentences() {
         return this.sentences.size();
     }
 
     public int getNumWords() {
-        int answer = 0;
-        for (Sentence s : this.sentences) {
-            answer += s.getNumWords();
+        if (numWords == 0) {
+            for (Sentence s : this.sentences) {
+                numWords += s.getNumWords();
+            }
         }
-        return answer;
+        return numWords;
     }
 
     public int getNumLetters() {
-        int answer = 0;
-        for (Sentence s : this.sentences) {
-            answer += s.getNumLetters();
+        if (numLetters == 0) {
+            for (Sentence s : this.sentences) {
+                numLetters += s.getNumLetters();
+            }
         }
-        return answer;
+        return numLetters;
     }
 
     public int getNumPunctuation() {
-        int answer = 0;
-        for (Sentence s : this.sentences) {
-            answer += s.getNumPunctuations();
+        if(numPunctuations == 0) {
+            for (Sentence s : this.sentences) {
+                numPunctuations += s.getNumPunctuations();
+            }
         }
-        return answer;
+        return numPunctuations;
     }
 
     public ArrayList<String> getWords() {
-        ArrayList<String> words = new ArrayList<String>();
-        for (Sentence s : this.sentences) {
-            words.addAll(s.getWords());
+        if(words == null) {
+            words = new ArrayList<String>();
+            for (Sentence s : this.sentences) {
+                words.addAll(s.getWords());
+            }
         }
         return words;
     }
 
     public ArrayList<String> getNonStopWords() {
-        ArrayList<String> words = new ArrayList<String>();
-        for (Sentence s : this.sentences) {
-            words.addAll(s.getNonStopWords());
+        if(nonStopWords == null) {
+            ArrayList<String> words = new ArrayList<String>();
+            for (Sentence s : this.sentences) {
+                nonStopWords.addAll(s.getNonStopWords());
+            }
         }
-        return words;
+        return nonStopWords;
     }
 
 }
