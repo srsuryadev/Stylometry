@@ -50,7 +50,7 @@ public class Paragraph {
     }
 
     public int getNumPunctuation() {
-        if(numPunctuations == 0) {
+        if (numPunctuations == 0) {
             for (Sentence s : this.sentences) {
                 numPunctuations += s.getNumPunctuations();
             }
@@ -59,7 +59,7 @@ public class Paragraph {
     }
 
     public ArrayList<String> getWords() {
-        if(words == null) {
+        if (words == null) {
             words = new ArrayList<String>();
             for (Sentence s : this.sentences) {
                 words.addAll(s.getWords());
@@ -69,8 +69,8 @@ public class Paragraph {
     }
 
     public ArrayList<String> getNonStopWords() {
-        if(nonStopWords == null) {
-            ArrayList<String> words = new ArrayList<String>();
+        if (nonStopWords == null) {
+            nonStopWords = new ArrayList<String>();
             for (Sentence s : this.sentences) {
                 nonStopWords.addAll(s.getNonStopWords());
             }

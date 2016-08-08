@@ -49,15 +49,15 @@ public class Sentence {
     }
 
     private void filterOutStopWords() {
-        for(String word: words){
+        for (String word : words) {
             boolean flag = true;
-            for(String stopWord : stopWords){
-                if(word.equalsIgnoreCase(stopWord)){
+            for (String stopWord : stopWords) {
+                if (word.equalsIgnoreCase(stopWord)) {
                     flag = false;
                     break;
                 }
             }
-            if(flag)
+            if (flag)
                 nonStopWords.add(word);
         }
     }

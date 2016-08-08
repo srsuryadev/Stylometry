@@ -130,7 +130,7 @@ public class Novel {
         return this.mostFrequentWords(N, getWords());
     }
 
-    public ArrayList<String> mostFrequentNonStopWords(int N){
+    public ArrayList<String> mostFrequentNonStopWords(int N) {
         return this.mostFrequentWords(N, getNonStopWords());
     }
 

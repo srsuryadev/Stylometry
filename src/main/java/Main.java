@@ -21,7 +21,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String[] files = {"test","Hamlet", "Azkaban", "ChamberOfSecrets", "GobletOfFire", "SorcerersStone"};
+        String[] files = {"test", "Hamlet", "Azkaban", "ChamberOfSecrets", "GobletOfFire", "SorcerersStone"};
         for (String fileName : files) {
             getStats(fileName);
             System.out.println("\n");
