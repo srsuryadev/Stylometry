@@ -19,12 +19,37 @@ public class Main {
 
         }
     }
+ public static String getFileName(String name){
+    	return BASE_PATH + name + ".txt";
+    }
+    
+    public static boolean isSimilarAuthor(Novel unknown, Novel known){
+    	
+    	Double unPunct = unknown.getPunctuationDensityParagraph();
+    	Double knPunct = unknown.getPunctuationDensityParagraph();
+    	
+    	Double unWordsSentence = unknown.getAvgSentenceLength();
+    	Double knWordsSentence = known.getAvgSentenceLength();
+    	
+    	if(Math.abs(knPunct - unPunct) <=1 && Math.abs(unWordsSentence- knWordsSentence)<=1){
+    		return true;
+    	}
+    	return false;
+    	
+    }
+    
+    
 
-    public static void main(String[] args) {
-        String[] files = {"test", "Hamlet", "Azkaban", "ChamberOfSecrets", "GobletOfFire", "SorcerersStone"};
-        for (String fileName : files) {
+    public static void main(String[] args) throws FileNotFoundException {
+        String[] files = { "Hamlet", "Azkaban", "ChamberOfSecrets", "GobletOfFire", "SorcerersStone", "test"};
+       /* for (String fileName : files) {
             getStats(fileName);
             System.out.println("\n");
         }
+        */
+        System.out.println("TEST I");
+        System.out.println(isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("SorcerersStone"))));
+        System.out.println("TEST 2");
+        System.out.println(isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("Hamlet"))));
     }
 }
