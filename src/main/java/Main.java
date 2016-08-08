@@ -1,7 +1,10 @@
+import java.io.FileNotFoundException;
 
 public class Main {
-    public final static String BASE_PATH = "src/test/resources/";
-
+    
+	public final static String BASE_PATH = "src/test/resources/";
+	public final static int THRESHOLD = 1;
+   
     public static void getStats(String fileName) {
 
         try {
@@ -19,7 +22,8 @@ public class Main {
 
         }
     }
- public static String getFileName(String name){
+    
+    public static String getFileName(String name){
     	return BASE_PATH + name + ".txt";
     }
     
@@ -31,7 +35,7 @@ public class Main {
     	Double unWordsSentence = unknown.getAvgSentenceLength();
     	Double knWordsSentence = known.getAvgSentenceLength();
     	
-    	if(Math.abs(knPunct - unPunct) <=1 && Math.abs(unWordsSentence- knWordsSentence)<=1){
+    	if(Math.abs(knPunct - unPunct) <=THRESHOLD && Math.abs(unWordsSentence- knWordsSentence)<=THRESHOLD){
     		return true;
     	}
     	return false;
@@ -47,9 +51,7 @@ public class Main {
             System.out.println("\n");
         }
         */
-        System.out.println("TEST I");
-        System.out.println(isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("SorcerersStone"))));
-        System.out.println("TEST 2");
-        System.out.println(isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("Hamlet"))));
+        System.out.println("TEST 1 : "+isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("SorcerersStone"))));
+        System.out.println("TEST 2 : "+isSimilarAuthor(new Novel(getFileName("Azkaban")), new Novel(getFileName("Hamlet"))));
     }
 }
